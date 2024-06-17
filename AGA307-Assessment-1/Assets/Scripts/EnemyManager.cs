@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
@@ -57,8 +58,9 @@ public class EnemyManager : MonoBehaviour
    {
         for (int i = 0; i < spawnPoints.Length; i++)
         {
-            GameObject enemy = Instantiate(enemyTypes[0], spawnPoints[i].position, spawnPoints[i].rotation);
-
+            int rNum = Random.Range(0, enemyTypes.Length);
+                
+            GameObject enemy = Instantiate(enemyTypes[rNum], spawnPoints[i].position, spawnPoints[i].rotation);
             enemies.Add(enemy);
         }
 
