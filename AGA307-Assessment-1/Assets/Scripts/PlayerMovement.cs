@@ -19,10 +19,12 @@ public class PlayerMovement : MonoBehaviour
 
     [Header(" ----- Projectile Settings-----")]
     public Transform projectileSpawn;
-    public GameObject projectilePrefab;
+    public GameObject[] projectileTypes;
+   
     public int projectileSpeed = 10;
     public int projectileLifetime = 2;
-
+    public int currentWeapon = 0;
+   
     public GameObject myCamera;
 
 
@@ -51,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
             Shoot();
+
+        ChangeWeapon();
     }
 
     void Shoot()
@@ -58,11 +62,22 @@ public class PlayerMovement : MonoBehaviour
         // instantiated the projectile
 
         //get the rotation of the camera, and mak ethe bullet rotate
-        GameObject proj = Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation);
+        GameObject proj = Instantiate(projectileTypes[currentWeapon], projectileSpawn.position, projectileSpawn.rotation);
         // set projectile speed
         proj.GetComponent<Rigidbody>().velocity = myCamera.transform.forward  * projectileSpeed;
         // destory projectile after set time *
         Destroy(proj, projectileLifetime);
+    }
+
+    void ChangeWeapon()
+    {
+        if (Input.GetKeyDown("1"))
+            currentWeapon = 0;
+         else if (Input.GetKeyDown("2"))
+            currentWeapon = 1;
+         else if(Input.GetKeyDown("3"))
+             currentWeapon = 2;
+
     }
 
 }
