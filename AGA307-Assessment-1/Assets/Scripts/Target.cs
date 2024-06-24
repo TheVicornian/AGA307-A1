@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
+    [Header("---Target health---")]
     int _hp = 5;
     public int health = 5;
          public int hp
@@ -13,7 +14,7 @@ public class Target : MonoBehaviour
     }
     public int maxHP = 5;
 
-    void OnCollisionEnter()
+        void OnCollisionEnter()
     {
         if (hp > 0)
             hp--;
