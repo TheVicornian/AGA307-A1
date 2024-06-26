@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum  TargetSize
+{
+    Small,
+    Medium,
+    Large,
+}
 
 public class TargetManager : MonoBehaviour
 {
@@ -23,20 +29,16 @@ public class TargetManager : MonoBehaviour
         {
             SpawnTarget();
         }
-        FindClosestTargetToPlayer();
-    }
-
-    void FixedUpdate()
-    {
-  
-               
+       // FindClosestTargetToPlayer();
     }
     
     void SpawnTarget()
-    {      
-        GameObject target = Instantiate(targetTypes[UnityEngine.Random.Range(0,targetTypes.Length)], targetSpawnpoints[UnityEngine.Random.Range(0,targetSpawnpoints.Length)].position, targetSpawnpoints[0].rotation);
-            //adds the newly created target to target list
-            targets.Add(target);   
+    {
+        int targetNum = UnityEngine.Random.Range(0, targetTypes.Length);
+        int spawnNum = UnityEngine.Random.Range(0, targetSpawnpoints.Length);
+        GameObject target = Instantiate(targetTypes[targetNum], targetSpawnpoints[spawnNum].position, targetSpawnpoints[spawnNum].rotation);
+        //adds the newly created target to target list
+        targets.Add(target);   
 
         /*
         //Loop from 0 until the length of our spawnPoints array
@@ -53,7 +55,6 @@ public class TargetManager : MonoBehaviour
         print("Target Count: " + targets.Count);
     }
     
-
     GameObject FindClosestTargetToPlayer()
     {
         GameObject closestTarget = null;

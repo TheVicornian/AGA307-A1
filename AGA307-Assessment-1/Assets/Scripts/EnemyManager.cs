@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
@@ -13,6 +11,8 @@ public class EnemyManager : MonoBehaviour
 
     public GameObject player;
 
+    float spawnDelay = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +20,8 @@ public class EnemyManager : MonoBehaviour
         {
             print(i);
         }
+        StartCoroutine(SpawnEnemyDelayed());
+
         SpawnEnemy();
 
         PrintNums();
@@ -83,5 +85,21 @@ public class EnemyManager : MonoBehaviour
         }
 
         return closestEnemy;
+    }
+
+    IEnumerator SpawnEnemyDelayed()
+    {
+        for (int i = 0; i < spawnPoints.Length; i++)
+        {
+            int rNum = Random.Range(0, enemyTypes.Length);
+
+            GameObject enemy = Instantiate(enemyTypes[rNum], spawnPoints[i].position, spawnPoints[i].rotation);
+
+            enemies.Add(enemy);
+
+            yield return new WaitForSeconds(3);
+        }
+
+        print("Enemy Count:" + enemies.Count);
     }
 }

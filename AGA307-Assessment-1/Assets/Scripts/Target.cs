@@ -14,11 +14,36 @@ public class Target : MonoBehaviour
     }
     public int maxHP = 5;
 
-        void OnCollisionEnter()
+    public TargetSize targetSize;
+    float scaleFactor = 1;
+
+    private void Start()
+    {
+        Setup();
+    }
+
+    void OnCollisionEnter()
     {
         if (hp > 0)
             hp--;
         else
            Destroy(this.gameObject);
     }    
+    void Setup()
+    {
+        switch (targetSize)
+        {
+            case TargetSize.Small:
+                transform.localScale = Vector3.one * scaleFactor;
+                break;
+            case TargetSize.Medium:
+                transform.localScale = Vector3.one * scaleFactor;
+                break;
+            case TargetSize.Large:
+                transform.localScale = Vector3.one * scaleFactor;
+                break;
+           
+
+        }
+    }
 }
