@@ -8,15 +8,10 @@ public class Enemy : MonoBehaviour
 
     public EnemyTypes enemyTypes;
 
-    public int health;
+    public int health = 3;
     private void Start()
     {
         Setup();
-
-       
-
-
-
     }
 
     // Update is called once per frame

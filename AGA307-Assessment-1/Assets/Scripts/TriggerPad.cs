@@ -26,7 +26,6 @@ public class TriggerPad : MonoBehaviour
                //change colour of the ball again
                sphere.GetComponent<Renderer>().material.color = Color.red;
             }
-
         }
     }
 
@@ -38,7 +37,6 @@ public class TriggerPad : MonoBehaviour
                 sphere.transform.localScale = Vector3.one;
             //Change the spheres colour to yellow
             sphere.GetComponent<Renderer>().material.color = Color.black;
-
         }
     }
 }

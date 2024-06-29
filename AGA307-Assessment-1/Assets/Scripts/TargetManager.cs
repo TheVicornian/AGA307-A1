@@ -19,7 +19,11 @@ public class TargetManager : MonoBehaviour
     int numIterations = 100;
 
     public GameObject player;
+    public GameObject smallTarget;
+    public GameObject mediumTarget;
+    public GameObject largeTarget;
 
+ 
     // Update is called once per frame
     void Update()
     {
@@ -29,7 +33,8 @@ public class TargetManager : MonoBehaviour
         {
             SpawnTarget();
         }
-       // FindClosestTargetToPlayer();
+
+        
     }
     
     void SpawnTarget()
@@ -54,23 +59,7 @@ public class TargetManager : MonoBehaviour
         //print total number of Targets spawned
         print("Target Count: " + targets.Count);
     }
-    
-    GameObject FindClosestTargetToPlayer()
-    {
-        GameObject closestTarget = null;
-        float bestDistance = float.MaxValue;
-
-        for (int i = 0; i < targets.Count; i++)
-        {
-            float distance = Vector3.Distance(player.transform.position, targets[i].transform.position);
-            if (distance < bestDistance)
-            {
-                bestDistance = distance;
-                closestTarget = targets[i];
-            }
-        }
-        return closestTarget;
-    }
+ 
 }
 
   
