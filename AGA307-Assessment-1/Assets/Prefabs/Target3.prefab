@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 2138522705139513279}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 9.71, y: 0.624, z: -4.9e-14}
-  m_LocalScale: {x: 9.091739, y: 0.08441334, z: 9.468618}
+  m_LocalPosition: {x: 9.71, y: 0.624, z: -7e-15}
+  m_LocalScale: {x: 1.330186, y: 0.012350273, z: 1.3853263}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -124,3 +124,4 @@ MonoBehaviour:
   maxHP: 5
   targetSize: 2
   moveDistance: 900
+  moveSpeed: 0.5

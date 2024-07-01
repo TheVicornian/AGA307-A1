@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : Singleton<EnemyManager>
 {
     public Transform[] spawnPoints = new Transform[8];
     public GameObject[] enemyTypes = new GameObject[8];
@@ -12,7 +13,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject player;
 
     float spawnDelay = 3;
-
+      
     // Start is called before the first frame update
     void Start()
     {
@@ -31,9 +32,21 @@ public class EnemyManager : MonoBehaviour
         SumNaturalNumbers(10);
 
         FindClosestEnemyPlayerToPlayer();
-        
+
+        ShuffleList(enemies);
+        EventManager.EnemyDie += EnemyDie;
+
+    }
+    void EnemyDie(Enemy e)
+    {
+        enemies.Remove(e.gameObject);
+        Debug.Log(enemies.Count);
     }
 
+    private void OnDestroy()
+    {
+        EventManager.EnemyDie -= EnemyDie;
+    }
     void SumFirst10NaturalNumbers()
     {
         int sum = 0;
@@ -44,7 +57,7 @@ public class EnemyManager : MonoBehaviour
 
     void SumNaturalNumbers(int targetNums)
     {
-        int sum = 0;       
+        int sum = 0;
         for (int i = 1; i < targetNums + 1; i++)
             sum += i;
 
@@ -57,11 +70,11 @@ public class EnemyManager : MonoBehaviour
     }
 
     void SpawnEnemy()
-   {
+    {
         for (int i = 0; i < spawnPoints.Length; i++)
         {
             int rNum = Random.Range(0, enemyTypes.Length);
-                
+
             GameObject enemy = Instantiate(enemyTypes[rNum], spawnPoints[i].position, spawnPoints[i].rotation);
             enemies.Add(enemy);
         }

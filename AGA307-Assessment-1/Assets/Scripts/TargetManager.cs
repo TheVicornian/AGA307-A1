@@ -9,8 +9,20 @@ public enum  TargetSize
     Medium,
     Large,
 }
+public enum TargetDifficulty
+{
+    Easy,
+    Medium,
+    Hard,
+}
+public enum TargetColour
+{
+    Green,
+    Yellow,
+    Red,
+}
 
-public class TargetManager : MonoBehaviour
+public class TargetManager : Singleton<TargetManager>
 {
     public Transform[] targetSpawnpoints = new Transform[7];
     public GameObject[] targetTypes = new GameObject[2];
@@ -19,9 +31,7 @@ public class TargetManager : MonoBehaviour
     int numIterations = 100;
 
     public GameObject player;
-    public GameObject smallTarget;
-    public GameObject mediumTarget;
-    public GameObject largeTarget;
+   
 
  
     // Update is called once per frame
@@ -61,6 +71,4 @@ public class TargetManager : MonoBehaviour
     }
  
 }
-
-  
 

@@ -15,6 +15,15 @@ public class Target : MonoBehaviour
     public int maxHP = 5;
 
     public TargetSize targetSize;
+
+
+
+    public TargetDifficulty targetDifficulty;
+
+
+
+    public TargetColour targetColour;
+
     float scaleFactor = 1;
 
     public int moveDistance = 500;
@@ -36,20 +45,36 @@ public class Target : MonoBehaviour
     }
     void Setup()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        targetSize = (TargetSize) Random.Range(0,3);
+
         switch (targetSize)
         {
             case TargetSize.Small:
-                transform.localScale = Vector3.one * scaleFactor;
+                transform.localScale = Vector3.one * 0.5f;
+                moveSpeed = 2;
+                GetComponent<Renderer>().material.color = Color.red;
+                
                 break;
             case TargetSize.Medium:
-                transform.localScale = Vector3.one * scaleFactor;
+                transform.localScale = Vector3.one * 1f;
+                moveSpeed = 1;
+                GetComponent<Renderer>().material.color = Color.yellow ;
+
                 break;
             case TargetSize.Large:
-                transform.localScale = Vector3.one * scaleFactor;
+                transform.localScale = Vector3.one * 2f; ;
+                moveSpeed = 0.1f;
+                GetComponent<Renderer>().material.color = Color.green;
+
                 break;
         }
-            StartCoroutine(MoveTarget());
-        
+
+        transform.localScale = new Vector3(transform.localScale.x, 0.1f, transform.localScale.z);
+
+        StartCoroutine(MoveTarget());
+        StartCoroutine(TeleportTarget());
+
     }
 
     IEnumerator MoveTarget()
@@ -67,11 +92,16 @@ public class Target : MonoBehaviour
             yield return new WaitForSeconds(3);
 
             StartCoroutine(MoveTarget());
-
         }
+    }
 
 
+    IEnumerator TeleportTarget()
+    {
+        yield return new WaitForSeconds (3);
 
-
+        transform.Translate(UnityEngine.Random.Range(-2, 8), UnityEngine.Random.Range(-2,8), UnityEngine.Random.Range(-2, 8));
+      
+        StartCoroutine(TeleportTarget());
     }
 }

@@ -122,3 +122,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   maxHP: 3
+  targetSize: 0
+  moveDistance: 500
+  moveSpeed: 1

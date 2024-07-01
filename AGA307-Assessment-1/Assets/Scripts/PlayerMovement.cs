@@ -74,9 +74,9 @@ public class PlayerMovement : MonoBehaviour
             currentWeapon = 2;
 
     }
-}
 
-   
+  
+}  
     
 
 

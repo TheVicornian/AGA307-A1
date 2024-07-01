@@ -3,48 +3,56 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     public GameState state;
-    public Difficulty difficulty;
-    int scoreMultipler = 1;
+    public TargetDifficulty difficulty;
+    int scoreMultiplier = 1;
+    int score = 1;
 
 
     // Start is called before the first frame update
     void Start()
     {
         state = GameState.Start;
-
-        difficulty = Difficulty.Easy;
         Setup();
-
-        
+        EventManager.EnemyHit -= EnemyHit;
     }
 
-    // Update is called once per frame
-    void Update()
-    { 
-    
+    void OnDestroy()
+    {
+        EventManager.EnemyHit -= EnemyHit;
+    }
+
+    void EnemyHit(Enemy e)
+    {
+        AddScore(10);
     }
 
     void Setup()
     {
         switch (difficulty)
         {
-            case Difficulty.Easy:
-                scoreMultipler = 1;
+            case TargetDifficulty.Easy:
+                scoreMultiplier = 1;
                 break;
-            case Difficulty.Medium:
-                scoreMultipler = 2;
+            case TargetDifficulty.Medium:
+                scoreMultiplier = 2;
                 break;
-            case Difficulty.Hard:
-                scoreMultipler = 3;
+            case TargetDifficulty.Hard:
+                scoreMultiplier = 3;
                 break;
             default:
-                scoreMultipler = 1;
+                scoreMultiplier = 1;
                 break;
 
         }
+
+    }
+
+    public void AddScore(int addScore)
+    {
+        score += addScore * scoreMultiplier;
 
     }
 }

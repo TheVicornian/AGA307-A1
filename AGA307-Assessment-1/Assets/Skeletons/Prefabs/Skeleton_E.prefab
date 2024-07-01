@@ -768,7 +768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTypes: 0
-  health: 0
+  health: 1
 --- !u!136 &-6500091673663155565
 CapsuleCollider:
   m_ObjectHideFlags: 0

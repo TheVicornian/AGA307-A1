@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Singleton <T>:MonoBehaviour where T:MonoBehaviour
+public class Singleton <T>:GameBehaviour where T:MonoBehaviour
 {
+    public bool dontDestroy;
     private static T instance_;
     public static T instance
     {
@@ -16,6 +17,7 @@ public class Singleton <T>:MonoBehaviour where T:MonoBehaviour
                 {
                     GameObject singleton = new GameObject(typeof(T).Name);
                     singleton.AddComponent<T>();
+                    instance_ = singleton.AddComponent<T>();
                 }
             }
             return instance_;
@@ -26,7 +28,7 @@ public class Singleton <T>:MonoBehaviour where T:MonoBehaviour
         if (instance_ == null )
         {
             instance_ =this as T;
-            //DontDestroyOnLoad (gameObject );
+            if (dontDestroy) DontDestroyOnLoad (gameObject);
         }
         else
         {

@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         Setup();
+        StartCoroutine(Move());
     }
 
     // Update is called once per frame
@@ -21,6 +22,9 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(Move());
         }
+
+        if (Input.GetKeyDown(KeyCode.H))
+            Hit();
     }
 
     IEnumerator Move()
@@ -56,4 +60,22 @@ public class Enemy : MonoBehaviour
                 break;
         }
     }
+
+    void Hit()
+    {
+        EventManager.OnEnemyHit(this);
+        health--;
+        if (health <= 0)
+            Die();
+    }
+
+    void Die()
+    {
+        EventManager.OnEnemyDie(this);
+        StopAllCoroutines();
+        Destroy(this.gameObject);
+        Debug.Log(EnemyManager.instance.enemies.Count);
+    }
+
+
 }
