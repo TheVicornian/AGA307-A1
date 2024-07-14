@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
-{ 
+{
     float moveDistance = 500;
 
     public EnemyTypes enemyTypes;
@@ -32,13 +32,13 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < moveDistance; i++)
         {
             transform.Translate(Vector3.forward * Time.deltaTime);
-                     
-                yield return null;
+
+            yield return null;
         }
 
         transform.Rotate(Vector3.up * 180);
 
-           yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(3);
 
         StartCoroutine(Move());
     }
@@ -48,15 +48,15 @@ public class Enemy : MonoBehaviour
         switch (enemyTypes)
         {
             case EnemyTypes.OneHanded:
-                health = 100;
+                health = 1;
                 break;
 
             case EnemyTypes.TwoHanded:
-                health = 200;
+                health = 2;
                 break;
 
             case EnemyTypes.Archer:
-                health = 50;
+                health = 5;
                 break;
         }
     }

@@ -39,8 +39,10 @@ public class EnemyManager : Singleton<EnemyManager>
     }
     void EnemyDie(Enemy e)
     {
+
         enemies.Remove(e.gameObject);
         Debug.Log(enemies.Count);
+
     }
 
     private void OnDestroy()
@@ -113,6 +115,9 @@ public class EnemyManager : Singleton<EnemyManager>
             yield return new WaitForSeconds(3);
         }
 
+        StartCoroutine(SpawnEnemyDelayed());
+
         print("Enemy Count:" + enemies.Count);
+
     }
 }

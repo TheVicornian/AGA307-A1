@@ -9,8 +9,12 @@ public class Projectile : MonoBehaviour
     {
         if (collision.collider.CompareTag("Target"))
         {
+            //change target colour on collision
             collision.collider.GetComponent<Renderer>().material.color = Color.red;
-            
+
         }
+    
+
+
     }   
 }

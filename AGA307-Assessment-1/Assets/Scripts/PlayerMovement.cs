@@ -66,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
     void ChangeWeapon()
     {
+        //change weapon
         if (Input.GetKeyDown("1"))
             currentWeapon = 0;
         else if (Input.GetKeyDown("2"))
